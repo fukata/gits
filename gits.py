@@ -1,10 +1,24 @@
 #!/usr/bin/env python
 
+class GitClient(object):
+	def __init__(self):
+		pass
+
+	def accountUrls(self, account):
+		return {'hoge': 'aaaaaaaaaaaaaaaaaaaaa'}
+
+	def watchUrls(self):
+		pass
+
+	def forkUrls(self):
+		pass
+
 class Gits:
 	def __init__(self):
 		self.account = None
 		self.oauth_token = None
 		self.oauth_secret = None
+		self.client = GitClient()
 
 	def cloneRepos(self, account, watch, fork):
 		if account is None:
@@ -23,7 +37,9 @@ class Gits:
 			self._pullForkRepos()
 
 	def _cloneAccountRepos(self, account):
-		pass
+		urls = self.client.accountUrls(account)
+		for (repo, url) in urls:
+			print "%s: %s" % (repo, url)
 	
 	def _pullAccountRepos(self, account):
 		pass
